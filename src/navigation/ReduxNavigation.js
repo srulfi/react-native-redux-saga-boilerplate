@@ -1,23 +1,20 @@
 import React, { Component } from 'react'
-import { BackHandler, Platform } from 'react-native'
+import { BackHandler } from 'react-native'
 import { Navigation } from './Navigation'
+import { Platform } from '../utils'
 
 class ReduxNavigation extends Component {
 
   componentDidMount () {
-    if (this._isAndroid()) {
+    if (!Platform.isIOS()) {
       BackHandler.addEventListener('hardwareBackPress', this._onBackPress)
     }
   }
 
   componentWillUnmount () {
-    if (this._isAndroid()) {
+    if (!Platform.isIOS()) {
       BackHandler.removeEventListener('hardwareBackPress', this._onBackPress)
     }
-  }
-
-  _isAndroid () {
-    return Platform.OS === 'android'
   }
 
   _onBackPress () {
