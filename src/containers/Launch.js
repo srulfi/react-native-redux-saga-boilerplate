@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import {
-  View,
+  ActivityIndicator,
   Text,
   TouchableOpacity,
+  View,
 } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -13,13 +14,15 @@ import styles from './styles/LaunchStyles'
 class Launch extends Component {
 
   componentDidMount () {
-      this.props.navigation.navigate('Login')
+    const screen = this.props.loggedIn ? 'Home' : 'Login'
+
+    this.props.navigation.navigate(screen)
   }
 
   render () {
     return (
       <View style={styles.container}>
-        <Text>Loading...</Text>
+        <ActivityIndicator />
       </View>
     )
   }

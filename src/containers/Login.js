@@ -21,10 +21,9 @@ class Login extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
-        <Text>------------------------</Text>
-        <TouchableOpacity onPress={() => this.props.login()}>
-          <Text>Ir a Home</Text>
+        <Text>Login Screen</Text>
+        <TouchableOpacity style={styles.loginButton} onPress={() => this.props.login('admin', '1234')}>
+          <Text>Login</Text>
         </TouchableOpacity>
       </View>
     )

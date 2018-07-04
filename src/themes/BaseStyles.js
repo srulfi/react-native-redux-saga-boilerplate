@@ -7,8 +7,13 @@ const BaseStyles = {
 		flex: 1,
 		alignItems: 'center',
 		backgroundColor: Colors.transparent,
-    paddingTop: Metrics.baseMargin,
+    paddingTop: Metrics.navBarHeight,
 	},
+  authButton: {
+    marginVertical: 20,
+    padding: 10,
+    borderWidth: 1,
+  },
 }
 
 export default BaseStyles

@@ -6,17 +6,24 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
+import { AuthActions } from '../actions/'
+
 import styles from './styles/HomeStyles'
 
 class Home extends Component {
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.loggedIn && !this.props.loggedIn) {
+      this.props.navigation.navigate('Login')
+    }
+  }
+
   render () {
     return (
       <View style={styles.container}>
-        <Text>Home</Text>
-        <Text>------------------------</Text>
-        <TouchableOpacity onPress={() => this.props.login('admin', '1234')}>
-          <Text>Ir a Login</Text>
+        <Text>Home Screen</Text>
+        <TouchableOpacity style={styles.logoutButton} onPress={() => this.props.logout()}>
+          <Text>Logout</Text>
         </TouchableOpacity>
       </View>
     )
@@ -24,9 +31,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
+  loggedIn: state.auth.loggedIn,
 })
 
 const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(AuthActions.logout())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
