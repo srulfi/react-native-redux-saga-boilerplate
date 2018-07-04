@@ -1,4 +1,4 @@
-import { RootNavigator } from '../navigation/Navigation'
+import RootNavigator from '../navigation/RootNavigator'
 
 const INITIAL_STATE = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams('Launch'))
 
