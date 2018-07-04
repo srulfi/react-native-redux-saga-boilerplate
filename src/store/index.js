@@ -6,7 +6,8 @@ import reducers from '../reducers/'
 
 export default () => {
   let finalReducers = reducers
-  // If rehydration is on use persistReducer
+
+  // if rehydration is on use persistReducer
   if (ReduxPersist.active) {
     const persistConfig = ReduxPersist.storeConfig
     finalReducers = persistReducer(persistConfig, reducers)

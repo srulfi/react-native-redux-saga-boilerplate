@@ -3,7 +3,7 @@ import DebugConfig from './config/DebugConfig'
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import ReduxNavigation from './navigation/ReduxNavigation'
-import createStore from './store/CreateStore'
+import createStore from './store'
 
 const store = createStore()
 

@@ -6,7 +6,7 @@ import DebugConfig from '../config/DebugConfig'
 const updateReducers = (store: Object) => {
   const reducerVersion = ReduxPersist.reducerVersion
 
-  // Check to ensure latest reducer version
+  // check to ensure latest reducer version
   AsyncStorage.getItem('reducerVersion').then((localVersion) => {
     if (localVersion !== reducerVersion) {
       if (DebugConfig.useReactotron) {
@@ -20,8 +20,10 @@ const updateReducers = (store: Object) => {
           important: true
         })
       }
-      // Purge store
+
+      // purge store
       persistStore(store, null).purge()
+
       AsyncStorage.setItem('reducerVersion', reducerVersion)
     } else {
       persistStore(store, null)

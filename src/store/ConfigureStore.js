@@ -5,26 +5,21 @@ import Config from '../config/DebugConfig'
 import createSagaMiddleware from 'redux-saga'
 import { NavigationMiddleware } from '../navigation/Navigation'
 
-// creates the store
 export default (rootReducer, rootSaga) => {
-  /* ------------- Redux Configuration ------------- */
 
   const middleware = []
   const enhancers = []
 
-  /* ------------- Navigation Middleware ------------ */
-
+  // navigation middleware
   middleware.push(NavigationMiddleware)
 
-  /* ------------- Saga Middleware ------------- */
-
+  // saga middleware
   const sagaMonitor = Config.useReactotron ? console.tron.createSagaMonitor() : null
   const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
 
   middleware.push(sagaMiddleware)
 
-  /* ------------- Assemble Middleware ------------- */
-
+  // assemble middleware
   enhancers.push(applyMiddleware(...middleware))
 
   // if Reactotron is enabled (default for __DEV__), we'll create the store through Reactotron
@@ -39,9 +34,5 @@ export default (rootReducer, rootSaga) => {
   // kick off root saga
   let sagasManager = sagaMiddleware.run(rootSaga)
 
-  return {
-    store,
-    sagasManager,
-    sagaMiddleware
-  }
+  return { store, sagasManager, sagaMiddleware }
 }
