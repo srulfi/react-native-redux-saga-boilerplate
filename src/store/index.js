@@ -1,8 +1,8 @@
 import { persistReducer } from 'redux-persist'
 import ReduxPersist from '../config/ReduxPersist'
 import configureStore from './ConfigureStore'
-import sagas from '../sagas/'
 import reducers from '../reducers/'
+import sagas from '../sagas/'
 
 export default () => {
   let finalReducers = reducers

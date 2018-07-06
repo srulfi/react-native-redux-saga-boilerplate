@@ -16,4 +16,7 @@ const mapStateToProps = state => ({
 
 const Navigation = connect(mapStateToProps)(NavigationState);
 
-export { Navigation, NavigationMiddleware }
+export {
+  Navigation,
+  NavigationMiddleware
+}
