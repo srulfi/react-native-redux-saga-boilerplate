@@ -14,6 +14,10 @@ import styles from './styles/LaunchStyles'
 class Launch extends Component {
 
   componentDidMount () {
+    this.props.syncUser()
+  }
+
+  componentDidUpdate (prevProps, prevState) {
     const screen = this.props.loggedIn ? 'Home' : 'Login'
 
     this.props.navigation.navigate(screen)
@@ -29,10 +33,12 @@ class Launch extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  loggedIn: state.auth.loggedIn
+  loading: state.auth.loading,
+  loggedIn: state.auth.loggedIn,
 })
 
 const mapDispatchToProps = dispatch => ({
+  syncUser: () => dispatch(AuthActions.syncUser())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Launch)

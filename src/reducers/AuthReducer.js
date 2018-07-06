@@ -11,6 +11,15 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
+    case AuthTypes.SYNC_USER:
+      return { ...state, loading: true, success: false, error: null }
+
+    case AuthTypes.SYNC_USER_SUCCESS:
+      return { ...state, loading: false, loggedIn: action.loggedIn, user: action.user, success: true, error: null }
+
+    case AuthTypes.SYNC_USER_ERROR:
+      return { ...state, loading: false, success: false, error: action.error }
+
     case AuthTypes.LOGIN:
       return { ...state, loading: true, success: false, error: null }
 
