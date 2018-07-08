@@ -1,13 +1,13 @@
 const AuthTypes = {
-  SYNC_USER: 'SYNC_USER',
-  SYNC_USER_SUCCESS: 'SYNC_USER_SUCCESS',
-  SYNC_USER_ERROR: 'SYNC_USER_ERROR',
-  LOGIN: 'LOGIN',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGIN_ERROR: 'LOGIN_ERROR',
-  LOGOUT: 'LOGOUT',
-  LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
-  LOGOUT_ERROR: 'LOGOUT_ERROR',
+  SYNC_USER: 'auth: sync user',
+  SYNC_USER_SUCCESS: 'auth: sync user success',
+  SYNC_USER_ERROR: 'auth: sync user error',
+  LOGIN: 'auth: login',
+  LOGIN_SUCCESS: 'auth: login success',
+  LOGIN_ERROR: 'auth: login error',
+  LOGOUT: 'auth: logout',
+  LOGOUT_SUCCESS: 'auth: logout success',
+  LOGOUT_ERROR: 'auth: logout error',
 }
 
 export default AuthTypes
