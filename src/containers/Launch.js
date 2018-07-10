@@ -18,9 +18,11 @@ class Launch extends Component {
   }
 
   componentDidUpdate (prevProps, prevState) {
-    const screen = this.props.loggedIn ? 'Home' : 'Login'
+    if (prevProps.loading && this.props.success) {
+      const screen = this.props.loggedIn ? 'Home' : 'Login'
 
-    this.props.navigation.navigate(screen)
+      this.props.navigation.navigate(screen)
+    }
   }
 
   render () {
@@ -35,6 +37,7 @@ class Launch extends Component {
 const mapStateToProps = (state, props) => ({
   loading: state.auth.loading,
   loggedIn: state.auth.loggedIn,
+  success: state.auth.success,
 })
 
 const mapDispatchToProps = dispatch => ({
