@@ -13,10 +13,12 @@ const INITIAL_STATE = Immutable({
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case AuthTypes.SYNC_USER:
+    case AuthTypes.LOGIN:
+    case AuthTypes.LOGOUT:
       return state.merge({
         loading: true,
         success: false,
-        error: null
+        error: null,
       })
 
     case AuthTypes.SYNC_USER_SUCCESS:
@@ -25,21 +27,7 @@ export default (state = INITIAL_STATE, action) => {
         loggedIn: action.loggedIn,
         user: action.user,
         success: true,
-        error: null
-      })
-
-    case AuthTypes.SYNC_USER_ERROR:
-      return state.merge({
-        loading: false,
-        success: false,
-        error: action.error
-      })
-
-    case AuthTypes.LOGIN:
-      return state.merge({
-        loading: true,
-        success: false,
-        error: null
+        error: null,
       })
 
     case AuthTypes.LOGIN_SUCCESS:
@@ -48,21 +36,7 @@ export default (state = INITIAL_STATE, action) => {
         loggedIn: true,
         user: action.user,
         success: true,
-        error: null
-      })
-
-    case AuthTypes.LOGIN_ERROR:
-      return state.merge({
-        loading: false,
-        success: false,
-        error: action.error
-      })
-
-    case AuthTypes.LOGOUT:
-      return state.merge({
-        loading: true,
-        success: false,
-        error: null
+        error: null,
       })
 
     case AuthTypes.LOGOUT_SUCCESS:
@@ -71,14 +45,16 @@ export default (state = INITIAL_STATE, action) => {
         loggedIn: false,
         user: null,
         success: true,
-        error: null
+        error: null,
       })
 
+    case AuthTypes.SYNC_USER_ERROR:
+    case AuthTypes.LOGIN_ERROR:
     case AuthTypes.LOGOUT_ERROR:
       return state.merge({
         loading: false,
         success: false,
-        error: action.error
+        error: action.error,
       })
 
     default:
