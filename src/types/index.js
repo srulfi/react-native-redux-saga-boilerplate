@@ -1,4 +1,4 @@
-import AuthTypes from './AuthTypes'
+import * as AuthTypes from './AuthTypes'
 
 export {
   AuthTypes,
