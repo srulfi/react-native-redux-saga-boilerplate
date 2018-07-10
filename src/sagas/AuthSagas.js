@@ -1,10 +1,13 @@
 import { call, put, select } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 
 import { AuthTypes } from '../types'
 
 export function * syncUser (action) {
   try {
-    // API session request. For now we just get the state from the persisted reducer
+    // API session request. delay() to show loader.
+    yield delay(500)
+    // For now we just get the state from the persisted reducer.
     const loggedIn = yield select(state => state.auth.loggedIn)
     const user = yield select(state => state.auth.user)
 
