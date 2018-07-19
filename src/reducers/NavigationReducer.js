@@ -1,8 +1,10 @@
+import { NavigationActions } from 'react-navigation'
 import RootNavigator from '../navigation/RootNavigator'
 
-const INITIAL_STATE = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams('Launch'))
+const initialAction = { type: NavigationActions.Init }
+const initialState = RootNavigator.router.getStateForAction(initialAction)
 
-export default (state = INITIAL_STATE, action) => {
+export default (state = initialState, action) => {
   const nextState = RootNavigator.router.getStateForAction(action, state)
   return nextState || state
 }

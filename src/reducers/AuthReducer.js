@@ -2,7 +2,7 @@ import Immutable from 'seamless-immutable'
 
 import { AuthTypes } from '../types'
 
-const INITIAL_STATE = Immutable({
+const initialState = Immutable({
   loading: false,
   loggedIn: false,
   user: null,
@@ -10,7 +10,7 @@ const INITIAL_STATE = Immutable({
   error: null,
 })
 
-export default (state = INITIAL_STATE, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case AuthTypes.SYNC_USER:
     case AuthTypes.LOGIN:
