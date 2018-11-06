@@ -5,24 +5,28 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { AuthActions } from '../actions/'
-
-import styles from './styles/HomeStyles'
+import { AuthActions } from '../actions'
+import { BaseStyles } from '../themes'
 
 class Home extends Component {
 
-  componentDidUpdate (prevProps, prevState) {
-    if (prevProps.loggedIn && !this.props.loggedIn) {
-      this.props.navigation.navigate('Login')
+  componentDidUpdate (prevProps) {
+    const { loggedIn, navigation } = this.props
+
+    if (prevProps.loggedIn && !loggedIn) {
+      navigation.navigate('Login')
     }
   }
 
   render () {
+    const { logout } = this.props
+
     return (
-      <View style={styles.container}>
+      <View style={BaseStyles.mainContainer}>
         <Text>Home Screen</Text>
-        <TouchableOpacity style={styles.logoutButton} onPress={() => this.props.logout()}>
+        <TouchableOpacity style={BaseStyles.authButton} onPress={() => logout()}>
           <Text>Logout</Text>
         </TouchableOpacity>
       </View>
@@ -30,7 +34,15 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
+Home.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn,
 })
 

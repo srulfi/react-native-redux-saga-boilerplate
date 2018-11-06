@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { BackHandler } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { Navigation } from './Navigation'
 import { Platform } from '../utils'
+
 
 class ReduxNavigation extends Component {
 
@@ -29,14 +33,35 @@ class ReduxNavigation extends Component {
   }
 
   render () {
+    const { dispatch, nav } = this.props;
+
     return (
-      <Navigation navigation={{
-          dispatch: this.props.dispatch,
-          state: this.props.nav,
+      <Navigation
+        navigation={{
+          dispatch,
+          nav,
         }}
       />
-    )
+    );
   }
 }
 
-export default ReduxNavigation
+ReduxNavigation.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  nav: PropTypes.shape({
+    index: PropTypes.number,
+  }).isRequired,
+}
+
+const mapStateToProps = state => ({
+  nav: state.nav,
+})
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReduxNavigation)

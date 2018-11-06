@@ -1,8 +1,8 @@
-import Config from '../config/DebugConfig'
 import Immutable from 'seamless-immutable'
 import Reactotron from 'reactotron-react-native'
 import { reactotronRedux as reduxPlugin } from 'reactotron-redux'
 import sagaPlugin from 'reactotron-redux-saga'
+import Config from "./DebugConfig"
 
 if (Config.useReactotron) {
   // https://github.com/infinitered/reactotron for more options!

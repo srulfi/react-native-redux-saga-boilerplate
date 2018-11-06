@@ -1,40 +1,51 @@
 import React, { Component } from 'react'
 import {
   ActivityIndicator,
-  Text,
-  TouchableOpacity,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { AuthActions } from '../actions/'
-
-import styles from './styles/LaunchStyles'
+import { AuthActions } from '../actions'
+import { BaseStyles } from '../themes'
 
 class Launch extends Component {
 
   componentDidMount () {
-    this.props.syncUser()
+    const { syncUser } = this.props
+
+    syncUser()
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (prevProps.loading && this.props.success) {
-      const screen = this.props.loggedIn ? 'Home' : 'Login'
+  componentDidUpdate (prevProps) {
+    const { loggedIn, success, navigation } = this.props
 
-      this.props.navigation.navigate(screen)
+    if (prevProps.loading && success) {
+      const screen = loggedIn ? 'Home' : 'Login'
+
+      navigation.navigate(screen)
     }
   }
 
   render () {
     return (
-      <View style={styles.container}>
+      <View style={BaseStyles.mainContainer}>
         <ActivityIndicator />
       </View>
     )
   }
 }
 
-const mapStateToProps = (state, props) => ({
+Launch.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  success: PropTypes.bool.isRequired,
+  syncUser: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+}
+
+const mapStateToProps = state => ({
   loading: state.auth.loading,
   loggedIn: state.auth.loggedIn,
   success: state.auth.success,

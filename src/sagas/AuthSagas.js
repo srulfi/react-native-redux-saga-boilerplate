@@ -1,9 +1,9 @@
-import { call, put, select } from 'redux-saga/effects'
+import { put, select } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 
 import { AuthTypes } from '../types'
 
-export function * syncUser (action) {
+export function * syncUser () {
   try {
     // API session request. delay() to show loader.
     yield delay(500)
@@ -17,7 +17,7 @@ export function * syncUser (action) {
   }
 }
 
-export function * login (action) {
+export function * login () {
   try {
     // API login request (email: action.email, password: action.password)
     const user = {
@@ -31,7 +31,7 @@ export function * login (action) {
   }
 }
 
-export function * logout (action) {
+export function * logout () {
   try {
     // API logout request
     yield put({ type: AuthTypes.LOGOUT_SUCCESS })

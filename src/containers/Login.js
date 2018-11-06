@@ -5,24 +5,28 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { AuthActions } from '../actions/'
-
-import styles from './styles/LoginStyles'
+import { AuthActions } from '../actions'
+import { BaseStyles } from '../themes'
 
 class Login extends Component {
 
-  componentDidUpdate (prevProps, prevState) {
-    if (!prevProps.loggedIn && this.props.loggedIn) {
-      this.props.navigation.navigate('Home')
+  componentDidUpdate (prevProps) {
+    const { loggedIn, navigation } = this.props
+
+    if (!prevProps.loggedIn && loggedIn) {
+      navigation.navigate('Home')
     }
   }
 
   render () {
+    const { login } = this.props
+
     return (
-      <View style={styles.container}>
+      <View style={BaseStyles.mainContainer}>
         <Text>Login Screen</Text>
-        <TouchableOpacity style={styles.loginButton} onPress={() => this.props.login('admin', '1234')}>
+        <TouchableOpacity style={BaseStyles.authButton} onPress={() => login('admin', '1234')}>
           <Text>Login</Text>
         </TouchableOpacity>
       </View>
@@ -30,7 +34,15 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
+Login.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+}
+
+const mapStateToProps = state => ({
   loading: state.auth.loading,
   loggedIn: state.auth.loggedIn,
 })
