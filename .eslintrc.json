@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:react-native/all",
+    "prettier"
+  ],
+  "plugins": ["prettier", "react", "react-native"],
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "fetch": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-underscore-dangle": [2, { "allowAfterThis": true }],
+    "import/prefer-default-export": "off",
+    "global-require": 0,
+    "import/no-named-as-default": 0
+  }
+}

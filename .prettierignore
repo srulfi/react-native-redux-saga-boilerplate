@@ -1,0 +1,6 @@
+# Ignore any path/file using .gitignore syntax, ie:
+
+node_modules/
+
+package.json
+package-lock.json
